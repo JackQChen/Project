@@ -1,0 +1,9 @@
+D:\Project\OCR\OCR\bin\Debug\OCR.exe
+D:\Project\OCR\OCR\bin\Debug\OCR.pdb
+D:\Project\OCR\OCR\obj\Debug\ResolveAssemblyReference.cache
+D:\Project\OCR\OCR\obj\Debug\OCR.Properties.Resources.resources
+D:\Project\OCR\OCR\obj\Debug\ResGen.read.1.tlog
+D:\Project\OCR\OCR\obj\Debug\ResGen.write.1.tlog
+D:\Project\OCR\OCR\obj\Debug\OCR.exe
+D:\Project\OCR\OCR\obj\Debug\OCR.pdb
+D:\Project\OCR\OCR\obj\Debug\OCR.FrmLocate.resources
