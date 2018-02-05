@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!--<link rel="icon" href="../../favicon.ico" />-->
+    <title>天网软件2016年会签到</title>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/carousel.css" rel="stylesheet">
+    <link href="css/card.css" rel="stylesheet" />
+    <link href="css/signIn.css" rel="stylesheet" />
+    <link href="css/bootbox.css" rel="stylesheet" />
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--<script src="../../assets/js/ie-emulation-modes-warning.js"></script>-->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="js/jquery-1.11.1.min.js">
+    </script>
+
+    <script src="js/bootstrap.min.js">
+    </script>
+
+    <script src="js/jquery.event.move.js">
+    </script>
+
+    <script src="js/jquery.event.swipe.js">
+    </script>
+
+    <script src='js/bootbox.js'></script>
+
+    <script src="js/common.js" type="text/javascript">
+    </script>
+
+    <script src="js/signIn.js" type="text/javascript" charset="gb2312">
+    </script>
+
+    </script>
+</head>
+<body>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class=" active"></li>
+            <li data-target="#myCarousel" data-slide-to="1" class=" "></li>
+            <li data-target="#myCarousel" data-slide-to="2" class=" "></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img class="first-slide" src="images/1.jpg"
+                    alt="First slide">
+            </div>
+            <div class="item">
+                <img class="second-slide" src="images/2.jpg"
+                    alt="Second slide">
+            </div>
+            <div class="item">
+                <img class="third-slide" src="images/3.jpg"
+                    alt="Third slide">
+            </div>
+        </div>
+       
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <input id="hfOpenId" type="hidden" />
+    <ul class="nav nav-tabs" id="myTabs">
+        <li id="tabStaff" role="presentation" class="active" style="margin-left: 10px; display: none"><a
+            href="#staffSign" class="active">员工签到</a></li>
+        <li id="tabGuest" role="presentation" style="display: none"><a href="#guestSign">客户签到</a></li>
+
+        <script>
+
+$('#myTabs a').click(function(e) {
+    e.preventDefault();
+    $(this).tab('show');
+    $('#myTabs a').each(function() {
+        if (this != e.target)
+            $(this).removeClass('active');
+    }
+    );
+    $(e.target).addClass('active');
+}
+)
+        </script>
+
+    </ul>
+    <div class="cardexplain active" id="staffSign">
+        <ul class="round">
+            <form action="javascript:;" method="post">
+            <li class="title mb">
+<span class="glyphicon glyphicon-pencil" style="display: inline-block;padding-right: 0px;color: #FB8D03;"></span>
+<span style="display: inline-block;">天网软件2016年会签到</span>
+</li>
+            <li class="nob">
+                <input name="formhash" id="Hidden2" value="2be3071a" type="hidden">
+                <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <th class="glyphicon glyphicon-chevron-right icon">
+                        </th>
+                        <th>
+                            工号
+                        </th>
+                        <td>
+                            <input name="truename" class="px" id="txtWorkNumber" value="" placeholder="请输入工号"
+                                type="text">
+                        </td>
+                    </tr>
+                </table>
+            </li>
+            <li class="nob">
+                <input name="formhash" id="Hidden4" value="2be3071a" type="hidden">
+                <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <th class="glyphicon glyphicon-user icon">
+                        </th>
+                        <th>
+                            姓名
+                        </th>
+                        <td>
+                            <input name="truename" class="px" id="txtName_Staff" value="" placeholder="请输入姓名"
+                                type="text">
+                        </td>
+                    </tr>
+                </table>
+            </li>
+            <li class="nob">
+                <input name="formhash" id="formhash" value="2be3071a" type="hidden">
+                <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <th class="glyphicon glyphicon-phone icon">
+                        </th>
+                        <th>
+                            手机号
+                        </th>
+                        <td>
+                            <input name="truename" class="px" id="txtPhoneNum_Staff" value="" placeholder="请输入手机号"
+                                type="text">
+                        </td>
+                    </tr>
+                </table>
+            </li>
+            </form>
+        </ul>
+    </div>
+    <div class="cardexplain" id="guestSign">
+        <ul class="round">
+            <form action="javascript:;" method="post">
+            <li class="title mb"><span class="none">天网软件2016年年会签到</span></li>
+            <li class="nob">
+                <input name="formhash" id="Hidden3" value="2be3071a" type="hidden">
+                <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <th>
+                            邀请码
+                        </th>
+                        <td>
+                            <input name="truename" class="px" id="txtInvite" value="" placeholder="请输入邀请码" type="text">
+                        </td>
+                    </tr>
+                </table>
+            </li>
+            <li class="nob">
+                <input name="formhash" id="formhash" value="2be3071a" type="hidden">
+                <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <th>
+                            手机号
+                        </th>
+                        <td>
+                            <input name="truename" class="px" id="txtPhoneNum_Guest" value="" placeholder="请输入手机号"
+                                type="text">
+                        </td>
+                    </tr>
+                </table>
+            </li>
+            <li class="nob">
+                <input name="formhash" id="Hidden1" value="2be3071a" type="hidden">
+                <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <th>
+                            姓名
+                        </th>
+                        <td>
+                            <input name="truename" class="px" id="txtName_Guest" value="" placeholder="请输入姓名(可选)"
+                                type="text">
+                        </td>
+                    </tr>
+                </table>
+            </li>
+            </form>
+        </ul>
+    </div>
+	<div style="height:50px"></div>
+    <div class="footReturn" style="width: 100%; position: fixed;bottom: 0px;">
+        <input id="btnSign" class="submit" style="margin: 0 auto;width: 90%;" value="年会签到" type="button" onclick="signIn();" />
+    </div>
+
+    <script>
+
+
+
+$('#myCarousel')
+.on('movestart', function(e) {
+    if ((e.distX > e.distY && e.distX < -e.distY) || 
+    (e.distX < e.distY && e.distX > -e.distY)) {
+        e.preventDefault();
+    }
+}
+);
+$('#myCarousel').carousel({
+    interval: 2000
+})
+$('#myCarousel').on('swipeleft', function(e) {
+    $('#myCarousel').carousel('next');
+}
+).on('swiperight', function(e) {
+    $('#myCarousel').carousel('prev');
+}
+);
+    </script>
+
+</body>
+</html>

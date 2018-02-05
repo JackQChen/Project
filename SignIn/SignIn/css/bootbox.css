@@ -1,0 +1,64 @@
+.modal-header {
+    color: #FB8C03;
+}
+.modal-header span.icon {
+    position: relative;
+    top: 5px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 23px;
+    padding-right: 5px;
+    padding-left: 3px;
+}
+.modal-header span.icon:before {
+    content: "\e086";
+}
+.modal-title {
+    display: inline-block;
+}
+.ok, .ok:hover, .ok:focus, .ok:active
+{   
+	 line-height: 23px;
+    font-size: 15px;
+    margin: 0 auto;
+    display: block;
+    width: 50%;
+    border: 1px solid rgb(220, 189, 150);
+	background-image: -ms-linear-gradient(bottom, #FB8B00 0%, #FFFFFF 100%);
+    background-image: -webkit-gradient(linear, 0% 100%, 0% 0%, from(rgb(251, 139, 0)), to(rgb(255, 255, 255)));
+    box-shadow: 0 1px 0 #F7E7CA inset, 0 1px 2px rgb(82, 59, 20);
+    color: #77681B;
+     text-shadow: 0 1px rgba(181, 167, 151, 0.47);
+    outline-color: rgba(255, 255, 255, 0);
+}
+.ok:active:hover
+{    
+	padding-bottom:9px;
+    border: 1px solid rgb(220, 189, 150); 
+	background-image: -ms-linear-gradient(bottom, #FB8B00 0%, #FFFFFF 100%);    
+background-image: -webkit-gradient(linear, 0% 100%, 0% 0%, from(rgb(232, 197, 152)), to(rgb(252, 173, 76)));
+    box-shadow: 0 1px 0 #F7E7CA inset, 0 1px 2px rgb(82, 59, 20);
+    color: #77681B;
+padding-bottom: 5px;
+    padding-top: 7px;
+    outline-color: rgba(255, 255, 255, 0);
+}
+.confirm, .confirm:hover, .confirm:active, .confirm:focus, .confirm:active:hover
+{
+    width: 30%;
+    line-height: 23px;
+    font-size: 14px;
+    border: 1px solid #0B8E00;
+    background-image: -webkit-gradient(linear, 0% 100%, 0% 0%, from(rgb(255, 255, 255)), to(rgb(249, 150, 8)));
+}
+.cancel
+{
+    width: 30%;
+    line-height: 23px;
+    font-size: 14px;
+}
+

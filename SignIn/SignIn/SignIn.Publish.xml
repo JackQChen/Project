@@ -1,0 +1,29 @@
+<publishData>
+  <publishTarget publishUrl="C:\Users\Administrator\Desktop\web\">
+    <file relUrl="bin/log4net.dll" publishTime="09/29/2015 12:28:49" />
+    <file relUrl="bin/Iftrue.Weixin.Core40.dll" publishTime="01/22/2016 13:44:11" />
+    <file relUrl="js/signIn.js" publishTime="01/22/2016 11:58:33" />
+    <file relUrl="bin/Config.xml" publishTime="01/21/2016 09:31:54" />
+    <file relUrl="css/bootbox.css" publishTime="01/21/2016 13:47:28" />
+    <file relUrl="Web.config" publishTime="01/14/2016 11:35:43" />
+    <file relUrl="bin/DataAccess.dll" publishTime="12/11/2015 10:59:25" />
+    <file relUrl="js/jquery.event.move.js" publishTime="01/07/2016 11:26:44" />
+    <file relUrl="css/carousel.css" publishTime="01/20/2016 10:46:20" />
+    <file relUrl="js/common.js" publishTime="12/11/2015 10:59:25" />
+    <file relUrl="SignIn.htm" publishTime="01/22/2016 14:33:12" />
+    <file relUrl="images/right.png" publishTime="07/28/2015 09:17:09" />
+    <file relUrl="bin/WeChatFramework.dll" publishTime="01/22/2016 13:44:12" />
+    <file relUrl="css/card.css" publishTime="01/21/2016 11:19:30" />
+    <file relUrl="css/bootstrap.min.css" publishTime="01/07/2016 10:12:20" />
+    <file relUrl="Ajax.ashx" publishTime="01/20/2016 15:02:07" />
+    <file relUrl="js/jquery-1.11.1.min.js" publishTime="10/30/2015 13:30:32" />
+    <file relUrl="bin/SignIn.dll" publishTime="01/22/2016 14:39:17" />
+    <file relUrl="js/jquery.event.swipe.js" publishTime="01/07/2016 12:05:50" />
+    <file relUrl="images/left.png" publishTime="07/28/2015 09:17:09" />
+    <file relUrl="bin/SignIn.pdb" publishTime="01/22/2016 14:39:17" />
+    <file relUrl="bin/SystemFramework.dll" publishTime="12/25/2015 10:53:07" />
+    <file relUrl="js/bootstrap.min.js" publishTime="01/20/2016 17:31:25" />
+    <file relUrl="js/bootbox.js" publishTime="12/11/2015 10:59:25" />
+    <file relUrl="css/signIn.css" publishTime="01/20/2016 14:22:46" />
+  </publishTarget>
+</publishData>

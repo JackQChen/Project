@@ -1,0 +1,17 @@
+G:\SignIn\SignIn\bin\SignIn.dll
+G:\SignIn\SignIn\bin\SignIn.pdb
+G:\SignIn\SignIn\bin\DataAccess.dll
+G:\SignIn\SignIn\bin\WeChatFramework.dll
+G:\SignIn\SignIn\bin\log4net.dll
+G:\SignIn\SignIn\bin\SystemFramework.dll
+G:\SignIn\SignIn\bin\Iftrue.Weixin.Core40.dll
+G:\SignIn\SignIn\obj\Debug\ResolveAssemblyReference.cache
+G:\SignIn\SignIn\obj\Debug\SignIn.dll
+G:\SignIn\SignIn\obj\Debug\SignIn.pdb
+C:\Users\Administrator\Desktop\SignIn\SignIn\bin\SignIn.dll
+C:\Users\Administrator\Desktop\SignIn\SignIn\bin\SignIn.pdb
+C:\Users\Administrator\Desktop\SignIn\SignIn\bin\WebFramework.dll
+C:\Users\Administrator\Desktop\SignIn\SignIn\bin\log4net.dll
+C:\Users\Administrator\Desktop\SignIn\SignIn\bin\WebFramework.pdb
+C:\Users\Administrator\Desktop\SignIn\SignIn\obj\Debug\SignIn.dll
+C:\Users\Administrator\Desktop\SignIn\SignIn\obj\Debug\SignIn.pdb

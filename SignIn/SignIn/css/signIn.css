@@ -1,0 +1,38 @@
+﻿#myTabs a {   
+ background-image: -webkit-gradient(linear, 0% 100%, 0% 0%, from(rgb(202, 199, 197)), to(rgb(222, 222, 222)));
+}
+
+#myTabs a.active {
+    background-image: -webkit-gradient(linear, 0% 100%, 0% 0%, from(rgb(23, 159, 0)), to(rgb(93, 211, 0)));
+}
+
+.kuang th.icon
+{
+width: 18px;
+    line-height: 40px;
+    color: #FB8D03;
+}
+
+.carousel-indicators li {    
+    font-family: 'Glyphicons Halflings';
+    text-indent: 0;
+    border: none;
+    border-radius: 0px;
+    color: #FB8D03;
+    font-size: 23px;
+    padding: 0 1px;
+    width: auto;
+    height: auto;
+}
+.carousel-indicators li:before{
+    content: "\e143";
+}
+.carousel-indicators .active {    
+    width: auto;
+    height: auto;
+    margin: 1px;
+    background-color: rgba(255, 255, 255, 0);
+}
+.carousel-indicators .active:before{
+    content: "\e005";
+}
