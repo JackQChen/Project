@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Config>
-  <add key="DatabaseType" value="MSSQLServer"/>
-  <add key="ConnectionString" value="Database=SignIn;user id=sa;password=twadmin;server=192.168.23.245;"/>
-  <add key="appId" value="wxc3a6d992a5821840"/>
-  <add key="appSecret" value="e23518a65a61f08f879c8b0e5fbfaa73"/>
-  <add key="AccessToken" value="g_ChKBCmFvOPjzrsAp-v6uL2QnpRjSxC1XV1tzQQ8ZFaMt17XogpaW9bMwcmIlB-E_6IfaDh3ptQRhFbDaxU7be-vFfh-9sZdqAxKbEgF-wSOZdAIANJU"/>
-  <add key="ip" value="cysoft.uicp.net"/>
-</Config>
