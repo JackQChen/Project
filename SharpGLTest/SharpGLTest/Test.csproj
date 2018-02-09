@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3F82B167-D38B-41EC-A1F3-FE883BC14C45}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Test</RootNamespace>
+    <AssemblyName>Test</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharpGL.SceneGraph\Assets\Asset.cs" />
+    <Compile Include="SharpGL.SceneGraph\Assets\Material.cs" />
+    <Compile Include="SharpGL.SceneGraph\Assets\Texture.cs" />
+    <Compile Include="SharpGL.SceneGraph\Cameras\ArcBallCamera.cs" />
+    <Compile Include="SharpGL.SceneGraph\Cameras\Camera.cs" />
+    <Compile Include="SharpGL.SceneGraph\Cameras\FrustumCamera.cs" />
+    <Compile Include="SharpGL.SceneGraph\Cameras\LookAtCamera.cs" />
+    <Compile Include="SharpGL.SceneGraph\Cameras\OrthographicCamera.cs" />
+    <Compile Include="SharpGL.SceneGraph\Cameras\PerspectiveCamera.cs" />
+    <Compile Include="SharpGL.SceneGraph\Collections.cs" />
+    <Compile Include="SharpGL.SceneGraph\Core\ArcBall.cs" />
+    <Compile Include="SharpGL.SceneGraph\Core\BoundingVolume.cs" />
+    <Compile Include="SharpGL.SceneGraph\Core\IBindable.cs" />
+    <Compile Include="SharpGL.SceneGraph\Core\IFreezable.cs" />
+    <Compile Include="SharpGL.SceneGraph\Core\IHasMaterial.cs" />
+    <Compile Include="SharpGL.SceneGraph\Core\IHasObjectSpace.cs" />
+    <Compile Include="SharpGL.SceneGraph\Core\IHasOpenGLContext.cs" />
+    <Compile Include="SharpGL.SceneGraph\Core\IRenderable.cs" />
+    <Compile Include="SharpGL.SceneGraph\Core\IVolumeBound.cs" />
+    <Compile Include="SharpGL.SceneGraph\Core\RenderMode.cs" />
+    <Compile Include="SharpGL.SceneGraph\Core\SceneContainer.cs" />
+    <Compile Include="SharpGL.SceneGraph\Core\SceneElement.cs" />
+    <Compile Include="SharpGL.SceneGraph\Core\SceneElementTraversal.cs" />
+    <Compile Include="SharpGL.SceneGraph\Core\VertexGrid.cs" />
+    <Compile Include="SharpGL.SceneGraph\DisplayList.cs" />
+    <Compile Include="SharpGL.SceneGraph\Effects\ArcBallTransformationEffect.cs" />
+    <Compile Include="SharpGL.SceneGraph\Effects\Effect.cs" />
+    <Compile Include="SharpGL.SceneGraph\Effects\LinearTransformationEffect.cs" />
+    <Compile Include="SharpGL.SceneGraph\Effects\OpenGLAttributesEffect.cs" />
+    <Compile Include="SharpGL.SceneGraph\Evaluators\Evaluator.cs" />
+    <Compile Include="SharpGL.SceneGraph\Evaluators\Evaluator1D.cs" />
+    <Compile Include="SharpGL.SceneGraph\Evaluators\Evaluator2D.cs" />
+    <Compile Include="SharpGL.SceneGraph\Evaluators\NURBS.cs" />
+    <Compile Include="SharpGL.SceneGraph\Evaluators\NurbsCurve.cs" />
+    <Compile Include="SharpGL.SceneGraph\Evaluators\NurbsSurface.cs" />
+    <Compile Include="SharpGL.SceneGraph\Face.cs" />
+    <Compile Include="SharpGL.SceneGraph\Feedback\Feedback.cs" />
+    <Compile Include="SharpGL.SceneGraph\Feedback\Polygonator.cs" />
+    <Compile Include="SharpGL.SceneGraph\Feedback\Triangulator.cs" />
+    <Compile Include="SharpGL.SceneGraph\GLColor.cs" />
+    <Compile Include="SharpGL.SceneGraph\Helpers\BoundingVolumeHelper.cs" />
+    <Compile Include="SharpGL.SceneGraph\Helpers\FreezableHelper.cs" />
+    <Compile Include="SharpGL.SceneGraph\Helpers\HasObjectSpaceHelper.cs" />
+    <Compile Include="SharpGL.SceneGraph\Helpers\OpenGLHelper.cs" />
+    <Compile Include="SharpGL.SceneGraph\Helpers\SceneHelper.cs" />
+    <Compile Include="SharpGL.SceneGraph\IDeepClonable.cs" />
+    <Compile Include="SharpGL.SceneGraph\Index.cs" />
+    <Compile Include="SharpGL.SceneGraph\Lighting\Light.cs" />
+    <Compile Include="SharpGL.SceneGraph\Lighting\Spotlight.cs" />
+    <Compile Include="SharpGL.SceneGraph\Matrix.cs" />
+    <Compile Include="SharpGL.SceneGraph\NETDesignSurface.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\AccumBufferAttributes.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\ColorBufferAttributes.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\CurrentAttributes.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\DepthBufferAttributes.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\EnableAttributes.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\EvalAttributes.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\FogAttributes.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\HintAttributes.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\LightingAttributes.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\LineAttributes.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\ListAttributes.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\OpenGLAttributeGroup.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\PixelModeAttributes.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\PointAttributes.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\PolygonAttributes.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\PolygonStippleAttributes.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\ScissorAttributes.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\StencilBufferAttributes.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\TextureAttributes.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\TransformAttributes.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLAttributes\ViewportAttributes.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLEventArgs.cs" />
+    <Compile Include="SharpGL.SceneGraph\OpenGLSceneGraphExtensions.cs" />
+    <Compile Include="SharpGL.SceneGraph\ParticleSystem\Particle.cs" />
+    <Compile Include="SharpGL.SceneGraph\ParticleSystem\ParticleSystems.cs" />
+    <Compile Include="SharpGL.SceneGraph\Plane.cs" />
+    <Compile Include="SharpGL.SceneGraph\Primitives\Axies.cs" />
+    <Compile Include="SharpGL.SceneGraph\Primitives\Cube.cs" />
+    <Compile Include="SharpGL.SceneGraph\Primitives\Folder.cs" />
+    <Compile Include="SharpGL.SceneGraph\Primitives\Grid.cs" />
+    <Compile Include="SharpGL.SceneGraph\Primitives\Polygon.cs" />
+    <Compile Include="SharpGL.SceneGraph\Primitives\Shadow.cs" />
+    <Compile Include="SharpGL.SceneGraph\Primitives\Teapot.cs" />
+    <Compile Include="SharpGL.SceneGraph\Quadrics\Cylinder.cs" />
+    <Compile Include="SharpGL.SceneGraph\Quadrics\Disk.cs" />
+    <Compile Include="SharpGL.SceneGraph\Quadrics\DrawStyle.cs" />
+    <Compile Include="SharpGL.SceneGraph\Quadrics\Normals.cs" />
+    <Compile Include="SharpGL.SceneGraph\Quadrics\Orientation.cs" />
+    <Compile Include="SharpGL.SceneGraph\Quadrics\Quadric.cs" />
+    <Compile Include="SharpGL.SceneGraph\Quadrics\Sphere.cs" />
+    <Compile Include="SharpGL.SceneGraph\Raytracing\Intersection.cs" />
+    <Compile Include="SharpGL.SceneGraph\Raytracing\IRayTracable.cs" />
+    <Compile Include="SharpGL.SceneGraph\Raytracing\Ray.cs" />
+    <Compile Include="SharpGL.SceneGraph\Raytracing\RayTracer.cs" />
+    <Compile Include="SharpGL.SceneGraph\Raytracing\ScreenPixel.cs" />
+    <Compile Include="SharpGL.SceneGraph\Scene.cs" />
+    <Compile Include="SharpGL.SceneGraph\Shaders\FragmentShader.cs" />
+    <Compile Include="SharpGL.SceneGraph\Shaders\Shader.cs" />
+    <Compile Include="SharpGL.SceneGraph\Shaders\ShaderProgram.cs" />
+    <Compile Include="SharpGL.SceneGraph\Shaders\VertexShader.cs" />
+    <Compile Include="SharpGL.SceneGraph\Transformations\LinearTransformation.cs" />
+    <Compile Include="SharpGL.SceneGraph\Transformations\Transformation.cs" />
+    <Compile Include="SharpGL.SceneGraph\UV.cs" />
+    <Compile Include="SharpGL.SceneGraph\Vertex.cs" />
+    <Compile Include="SharpGL.WinForms\GLColourPicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SharpGL.WinForms\IdleTimeManager.cs" />
+    <Compile Include="SharpGL.WinForms\MaterialListViewItem.cs" />
+    <Compile Include="SharpGL.WinForms\OpenGLControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SharpGL.WinForms\OpenGLControl.Designer.cs">
+      <DependentUpon>OpenGLControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SharpGL.WinForms\RenderEventArgs.cs" />
+    <Compile Include="SharpGL.WinForms\RenderTrigger.cs" />
+    <Compile Include="SharpGL.WinForms\SceneControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SharpGL.WinForms\VertexControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SharpGL\DIBSection.cs" />
+    <Compile Include="SharpGL\Enumerations\OpenGLEnumerations.cs" />
+    <Compile Include="SharpGL\FontBitmaps.cs" />
+    <Compile Include="SharpGL\FontOutlines.cs" />
+    <Compile Include="SharpGL\OpenGL.cs" />
+    <Compile Include="SharpGL\OpenGLExtensions.cs" />
+    <Compile Include="SharpGL\RenderContextProviders\DIBSectionRenderContextProvider.cs" />
+    <Compile Include="SharpGL\RenderContextProviders\ExternalRenderContextProvider.cs" />
+    <Compile Include="SharpGL\RenderContextProviders\FBORenderContextProvider.cs" />
+    <Compile Include="SharpGL\RenderContextProviders\HiddenWindowRenderContextProvider.cs" />
+    <Compile Include="SharpGL\RenderContextProviders\IRenderContextProvider.cs" />
+    <Compile Include="SharpGL\RenderContextProviders\NativeWindowRenderContextProvider.cs" />
+    <Compile Include="SharpGL\RenderContextProviders\RenderContextProvider.cs" />
+    <Compile Include="SharpGL\RenderContextType.cs" />
+    <Compile Include="SharpGL\Shaders\Shader.cs" />
+    <Compile Include="SharpGL\Shaders\ShaderCompilationException.cs" />
+    <Compile Include="SharpGL\Shaders\ShaderProgram.cs" />
+    <Compile Include="SharpGL\Tesselators\Delegates.cs" />
+    <Compile Include="SharpGL\Version\OpenGLVersion.cs" />
+    <Compile Include="SharpGL\Version\VersionAttribute.cs" />
+    <Compile Include="SharpGL\VertexBuffers\IndexBuffer.cs" />
+    <Compile Include="SharpGL\VertexBuffers\VertexBuffer.cs" />
+    <Compile Include="SharpGL\VertexBuffers\VertexBufferArray.cs" />
+    <Compile Include="SharpGL\Win32.cs" />
+    <Compile Include="ViewController\CameraEventArgs.cs" />
+    <Compile Include="ViewController\Direction.cs" />
+    <Compile Include="ViewController\PerspectiveParam.cs" />
+    <Compile Include="ViewController\TriTuple.cs" />
+    <Compile Include="ViewController\ViewController.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="SharpGL.WinForms\GLColourPicker.resx">
+      <DependentUpon>GLColourPicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SharpGL.WinForms\OpenGLControl.resx">
+      <DependentUpon>OpenGLControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SharpGL.WinForms\SceneControl.resx">
+      <DependentUpon>SceneControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SharpGL.WinForms\VertexControl.resx">
+      <DependentUpon>VertexControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
