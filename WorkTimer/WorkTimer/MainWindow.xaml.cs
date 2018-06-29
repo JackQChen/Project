@@ -82,16 +82,12 @@ namespace WorkTimer
             this.InvalidateVisual();
         }
 
-        protected override Visual GetVisualChild(int index)
-        {
-            return null;
-        }
-
         Brush bBrush;
         ImageSource imgSource;
         Typeface bFont;
         FormattedText bText;
         Point txtLocation;
+        Rect rectBk, rectImg;
 
         void Init()
         {
@@ -107,13 +103,16 @@ namespace WorkTimer
                 new System.Windows.FontStretch());
 
             txtLocation = new Point(45, 60);
+            rectBk = new Rect(32, 32, this.Width - 90, this.Height - 102);
+            rectImg = new Rect(0, 0, this.Width, this.Height);
+            this.Background = null;
         }
 
         protected override void OnRender(DrawingContext dc)
         {
-            dc.DrawRectangle(bBrush, null, new Rect(32, 32, this.Width - 90, this.Height - 102));
+            dc.DrawRectangle(bBrush, null, rectBk);
             dc.DrawText(bText, txtLocation);
-            dc.DrawImage(imgSource, new Rect(0, 0, this.Width, this.Height));
+            dc.DrawImage(imgSource, rectImg);
         }
     }
 }
