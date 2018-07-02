@@ -189,29 +189,33 @@ namespace DesktopWidget
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create("https://www.yahoo.com/news/weather/china/xian/xian-2157249");
             using (HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse())
             {
-                StreamReader streamReader = new StreamReader(httpWebResponse.GetResponseStream());
-                string responseContent = streamReader.ReadToEnd();
-                var weather = Regex.Match(responseContent, @"<span class=""description.+?</span>", RegexOptions.Singleline).Value;
-                weather = Regex.Match(weather, @">.+?<").Value.Replace("<", "").Replace(">", "");
-                var temp = Regex.Match(responseContent, @"<span class=""Va\(t\).*?</span>", RegexOptions.Singleline).Value;
-                temp = Regex.Match(temp, @">.+?<").Value.Replace("<", "").Replace(">", "");
-                var tempNum = Convert.ToInt32((Convert.ToInt32(temp) - 32) / 1.8);
-                strWeather[0] = weather + " " + tempNum + "`C";
-                httpWebResponse.Close();
-                streamReader.Close();
+                using (StreamReader streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
+                {
+                    string responseContent = streamReader.ReadToEnd();
+                    var weather = Regex.Match(responseContent, @"<span class=""description.+?</span>", RegexOptions.Singleline).Value;
+                    weather = Regex.Match(weather, @">.+?<").Value.Replace("<", "").Replace(">", "");
+                    var temp = Regex.Match(responseContent, @"<span class=""Va\(t\).*?</span>", RegexOptions.Singleline).Value;
+                    temp = Regex.Match(temp, @">.+?<").Value.Replace("<", "").Replace(">", "");
+                    var tempNum = Convert.ToInt32((Convert.ToInt32(temp) - 32) / 1.8);
+                    strWeather[0] = weather + " " + tempNum + "`C";
+                    httpWebResponse.Close();
+                    streamReader.Close();
+                }
             }
-            HttpWebRequest httpWebRequest2 = (HttpWebRequest)WebRequest.Create("http://www.pm25.in/xian");
-            using (HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest2.GetResponse())
+            httpWebRequest = (HttpWebRequest)WebRequest.Create("http://www.pm25.in/xian");
+            using (HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse())
             {
-                StreamReader streamReader = new StreamReader(httpWebResponse.GetResponseStream());
-                string responseContent = streamReader.ReadToEnd();
-                var pm25 = Regex.Match(responseContent, @"<td>高新西区.+?</tr>", RegexOptions.Singleline).Value;
-                var pIndex = pm25.IndexOf("(PM2.5)");
-                pIndex = pm25.IndexOf("<td>", pIndex);
-                pm25 = pm25.Substring(pIndex, pm25.IndexOf("</td>", pIndex) - pIndex);
-                strWeather[1] = pm25.Split('>')[1];
-                httpWebResponse.Close();
-                streamReader.Close();
+                using (StreamReader streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
+                {
+                    string responseContent = streamReader.ReadToEnd();
+                    var pm25 = Regex.Match(responseContent, @"<td>高新西区.+?</tr>", RegexOptions.Singleline).Value;
+                    var pIndex = pm25.IndexOf("(PM2.5)");
+                    pIndex = pm25.IndexOf("<td>", pIndex);
+                    pm25 = pm25.Substring(pIndex, pm25.IndexOf("</td>", pIndex) - pIndex);
+                    strWeather[1] = pm25.Split('>')[1];
+                    httpWebResponse.Close();
+                    streamReader.Close();
+                }
             }
         }
 
