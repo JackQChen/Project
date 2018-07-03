@@ -193,7 +193,8 @@ namespace DesktopWidget
                 {
                     string responseContent = streamReader.ReadToEnd();
                     var weather = Regex.Match(responseContent, @"<span class=""description.+?</span>", RegexOptions.Singleline).Value;
-                    weather = Regex.Match(weather, @">.+?<").Value.Replace("<", "").Replace(">", "");
+                    var wArr = Regex.Match(weather, @">.+?<").Value.Replace("<", "").Replace(">", "").Split(' ');
+                    weather = wArr[wArr.Length - 1];
                     var temp = Regex.Match(responseContent, @"<span class=""Va\(t\).*?</span>", RegexOptions.Singleline).Value;
                     temp = Regex.Match(temp, @">.+?<").Value.Replace("<", "").Replace(">", "");
                     var tempNum = Convert.ToInt32((Convert.ToInt32(temp) - 32) / 1.8);
@@ -209,10 +210,8 @@ namespace DesktopWidget
                 {
                     string responseContent = streamReader.ReadToEnd();
                     var pm25 = Regex.Match(responseContent, @"<td>高新西区.+?</tr>", RegexOptions.Singleline).Value;
-                    var pIndex = pm25.IndexOf("(PM2.5)");
-                    pIndex = pm25.IndexOf("<td>", pIndex);
-                    pm25 = pm25.Substring(pIndex, pm25.IndexOf("</td>", pIndex) - pIndex);
-                    strWeather[1] = pm25.Split('>')[1];
+                    var ms = Regex.Matches(pm25, "<td>.+?</td>", RegexOptions.Singleline);
+                    strWeather[1] = Regex.Match(ms[4].Value, @">.+?<").Value.Replace("<", "").Replace(">", "");
                     httpWebResponse.Close();
                     streamReader.Close();
                 }
