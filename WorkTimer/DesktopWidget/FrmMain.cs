@@ -117,6 +117,7 @@ namespace DesktopWidget
         [DllImport("user32.dll", SetLastError = true)]
         static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, string className, string windowTitle);
         const int GWL_HWNDPARENT = -8;
+
         protected override void OnShown(EventArgs e)
         {
             //该事件及设置顺序不可调整
