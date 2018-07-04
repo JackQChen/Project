@@ -134,7 +134,8 @@ namespace DesktopWidget
 
         #endregion
 
-        Bitmap bmp;
+        SolidBrush brush;
+        Bitmap bmp, bmpBg;
         Graphics gBmp;
         //字体样式须为局部变量
         PrivateFontCollection pfc;
@@ -143,8 +144,9 @@ namespace DesktopWidget
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            var glass = Resources.glass;
-            bmp = new Bitmap(this.Width, glass.Height * this.Width / glass.Width);
+            brush = new SolidBrush(Color.FromArgb(147, 174, 97));
+            bmpBg = Resources.glass.Clone() as Bitmap;
+            bmp = new Bitmap(this.Width, bmpBg.Height * this.Width / bmpBg.Width);
             gBmp = Graphics.FromImage(bmp);
             pfc = new PrivateFontCollection();
             var fontData = Resources.Font;
@@ -235,7 +237,7 @@ namespace DesktopWidget
         private void timer1_Tick(object sender, EventArgs e)
         {
             gBmp.Clear(Color.Transparent);
-            gBmp.FillRectangle(new SolidBrush(Color.FromArgb(147, 174, 97)), 32, 33, 310, 210);
+            gBmp.FillRectangle(brush, 32, 33, 310, 210);
             gBmp.DrawString(string.Format(@"
 StartTime {0}
 
@@ -247,7 +249,7 @@ StartTime {0}
 
     PM2.5 {4}", GetTimeInfo()),
             font, Brushes.Black, 55, 34);
-            gBmp.DrawImage(Resources.glass, 0, 0, bmp.Width, bmp.Height);
+            gBmp.DrawImage(bmpBg, 0, 0, bmp.Width, bmp.Height);
             SetBits(bmp);
         }
     }
