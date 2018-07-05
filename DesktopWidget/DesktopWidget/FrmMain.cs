@@ -185,7 +185,7 @@ namespace DesktopWidget
             File.WriteAllText(configPath, this.Left + "," + this.Top);
         }
 
-        string[] strWeather = new string[2];
+        string[] strWeather = new string[2] { "--", "--" };
 
         void GetWeather()
         {
