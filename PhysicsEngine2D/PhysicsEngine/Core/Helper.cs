@@ -60,7 +60,7 @@ namespace PhysicsEngine.Core
 
         public static double Dot(this Point lhs, Point rhs)
         {
-            return lhs.X*rhs.X + lhs.Y*rhs.Y;
+            return lhs.X * rhs.X + lhs.Y * rhs.Y;
         }
 
         public static void Negate(this Point lhs)
@@ -127,8 +127,8 @@ namespace PhysicsEngine.Core
 
             var cos = Math.Cos(angle);
             var sin = Math.Sin(angle);
-            return new Point(point.X*cos - point.Y*sin,
-                point.X*sin + point.Y*cos);
+            return new Point(point.X * cos - point.Y * sin,
+                point.X * sin + point.Y * cos);
         }
 
         public static bool IsZero(this Point point)
@@ -150,7 +150,7 @@ namespace PhysicsEngine.Core
                 bound.Min.Y,
                 bound.Max.Y,
                 bound.Max.Y
-            }, (a, b) => new PointF((float) a, (float) b)).ToArray();
+            }, (a, b) => new PointF((float)a, (float)b)).ToArray();
         }
     }
 }
