@@ -25,12 +25,13 @@ namespace TestPE
 
             double x = 10, y = 10, offset = 5, left = 0, right = 500, top = 0, bottom = 400, thick = 10;
             engine.World.Add(Factory.CreateRectangleBody(x + right / 2, y + top - offset, right, thick, true));
-            var bottomBody = Factory.CreateRectangleBody(x + right / 2, y + bottom + offset, right, thick, true);
+            var bottomBody = Factory.CreateRectangleBody(x + right / 2, y + bottom + offset, right + 2 * thick, thick, true);
             engine.World.Add(bottomBody);
             engine.World.Add(Factory.CreateRectangleBody(x + left - offset, y + bottom / 2, thick, bottom, true));
             engine.World.Add(Factory.CreateRectangleBody(x + right + offset, y + bottom / 2, thick, bottom, true));
 
-            box = Factory.CreateRectangleBody(100, 200, 10, 100);
+            box = Factory.CreateRectangleBody(100, 200, 100, 5);
+            box.AngularVelocity = 0.1;
             //box = Factory.CreateCircleBody(100, 100, 50);
             //box.Density = 0.0001;
 
@@ -64,7 +65,7 @@ namespace TestPE
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.box.Force.Y = -0.03;
+                this.box.Force.Y = -0.01;
                 this.box.Force.X = 0.01 * (e.X > box.Position.X ? 1 : -1);
                 this.box.AngularVelocity = 0.05;
             }
