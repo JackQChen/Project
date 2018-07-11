@@ -30,7 +30,7 @@ namespace TestPE
             engine.World.Add(Factory.CreateRectangleBody(x + left - offset, y + bottom / 2, thick, bottom, true));
             engine.World.Add(Factory.CreateRectangleBody(x + right + offset, y + bottom / 2, thick, bottom, true));
 
-            box = Factory.CreateRectangleBody(100, 200, 100, 5);
+            box = Factory.CreateCircleBody(100, 200, 30 );
             box.AngularVelocity = 0.1;
             //box = Factory.CreateCircleBody(100, 100, 50);
             //box.Density = 0.0001;

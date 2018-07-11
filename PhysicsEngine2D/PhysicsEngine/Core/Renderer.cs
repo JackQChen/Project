@@ -49,12 +49,12 @@ namespace PhysicsEngine.Core
             foreach (var part in parts)
             {
                 var vertices = part.Vertices.ToPointF();
-                //_graphics.FillPolygon(BrushFactory.Get(part.Render.Fill), vertices);
-                _graphics.DrawPolygon(PenFactory.Get(part.Render.Stroke), vertices);
-                foreach (var p in vertices)
-                    _graphics.FillRectangle(Brushes.Black, p.X - 1, p.Y - 1, 2, 2);
-                var cp = part.Vertices.Centre();
-                _graphics.FillRectangle(Brushes.Red, (float)cp.X - 1, (float)cp.Y - 1, 2, 2);
+                _graphics.FillPolygon(BrushFactory.Get(part.Render.Fill), vertices);
+                // _graphics.DrawPolygon(PenFactory.Get(part.Render.Stroke), vertices);
+                //foreach (var p in vertices)
+                //    _graphics.FillRectangle(Brushes.Black, p.X - 1, p.Y - 1, 2, 2);
+                //var cp = part.Vertices.Centre();
+                //_graphics.FillRectangle(Brushes.Red, (float)cp.X - 1, (float)cp.Y - 1, 2, 2);
             }
             /*foreach (var part in parts)
             {

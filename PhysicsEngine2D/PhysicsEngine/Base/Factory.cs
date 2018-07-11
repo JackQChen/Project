@@ -16,17 +16,11 @@ namespace PhysicsEngine.Base
         }
         public static Body CreateCircleBody(double x, double y, double r, bool isStatic = false)
         {
-            var xr = r / Math.Sqrt(2);
-            var path = new List<Point> {
-                new Point ( r,0  ),
-                new Point ( r + xr  ,r- xr  ),
-                new Point (2* r, r ),
-                new Point ( r + xr  , r+ xr  ),
-                new Point ( r , 2*r ),
-                new Point ( r-xr , r+ xr   ),
-                new Point ( 0,  r ),
-                new Point ( r-xr , r- xr   ),
-            };
+            var path = new List<Point>();
+            for (var i = 0; i < 2 * r; i++)
+                path.Add(new Point(i, r - Math.Sqrt((2 * r - i) * i)));
+            for (var i = 2 * r; i > 0; i--)
+                path.Add(new Point(i, r + Math.Sqrt((2 * r - i) * i)));
             var body = new Body { Static = isStatic };
             body.Init(path);
             body.Position = new Point(x, y);
