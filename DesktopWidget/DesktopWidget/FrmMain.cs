@@ -154,7 +154,7 @@ namespace DesktopWidget
             Marshal.Copy(fontData, 0, iFont, fontData.Length);
             pfc.AddMemoryFont(iFont, fontData.Length);
             Marshal.FreeHGlobal(iFont);
-            font = new Font(pfc.Families[0], 14.6f);
+            font = new Font(pfc.Families[0], 14f);
             configPath = Application.StartupPath + "\\dw.dat";
             if (File.Exists(configPath))
             {
@@ -185,7 +185,7 @@ namespace DesktopWidget
             File.WriteAllText(configPath, this.Left + "," + this.Top);
         }
 
-        string[] strWeather = new string[2] { "--", "--" };
+        string[] strWeather = new string[3] { "--", "--", "--" };
 
         void GetWeather()
         {
@@ -201,7 +201,8 @@ namespace DesktopWidget
                     var temp = Regex.Match(responseContent, @"<span class=""Va\(t\).*?</span>", RegexOptions.Singleline).Value;
                     temp = Regex.Match(temp, @">.+?<").Value.Replace("<", "").Replace(">", "");
                     var tempNum = Convert.ToInt32((Convert.ToInt32(temp) - 32) / 1.8);
-                    strWeather[0] = weather + " " + tempNum + "`C";
+                    strWeather[0] = weather;
+                    strWeather[1] = tempNum + "`C";
                     httpWebResponse.Close();
                     streamReader.Close();
                 }
@@ -214,7 +215,7 @@ namespace DesktopWidget
                     string responseContent = streamReader.ReadToEnd();
                     var pm25 = Regex.Match(responseContent, @"<td>高新西区.+?</tr>", RegexOptions.Singleline).Value;
                     var ms = Regex.Matches(pm25, "<td>.+?</td>", RegexOptions.Singleline);
-                    strWeather[1] = Regex.Match(ms[4].Value, @">.+?<").Value.Replace("<", "").Replace(">", "");
+                    strWeather[2] = Regex.Match(ms[4].Value, @">.+?<").Value.Replace("<", "").Replace(">", "");
                     httpWebResponse.Close();
                     streamReader.Close();
                 }
@@ -223,32 +224,42 @@ namespace DesktopWidget
 
         string[] GetTimeInfo()
         {
-            var strArr = new string[5];
+            var strArr = new string[6];
             var dtStart = DateTime.Now.AddMilliseconds(0 - Environment.TickCount);
             strArr[0] = dtStart.ToString("HH:mm:ss");
             var tsRemain = dtStart.AddHours(9.5) - DateTime.Now;
-            strArr[1] = tsRemain.TotalMilliseconds > 0 ? tsRemain.ToString().Split('.')[0] : "00:00:00";
-            strArr[2] = tsRemain.TotalMilliseconds < 0 ? tsRemain.ToString().Replace("-", "").Split('.')[0] : "00:00:00";
+            if (tsRemain.TotalMilliseconds > 0)
+            {
+                strArr[1] = "RestTime";
+                strArr[2] = tsRemain.ToString().Split('.')[0];
+            }
+            else
+            {
+                strArr[1] = "OverTime";
+                strArr[2] = tsRemain.ToString().Replace("-", "").Split('.')[0];
+            }
             strArr[3] = strWeather[0];
             strArr[4] = strWeather[1];
+            strArr[5] = strWeather[2];
             return strArr;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             gBmp.Clear(Color.Transparent);
-            gBmp.FillRectangle(brush, 32, 33, 310, 210);
-            gBmp.DrawString(string.Format(@"
+            gBmp.FillRectangle(brush, 25, 25, 230, 160);
+            string strText = string.Format(@"
 StartTime {0}
-
- RestTime {1}
-
- OverTime {2}
-
+ {1} {2}
   Weather {3}
-
-    PM2.5 {4}", GetTimeInfo()),
-            font, Brushes.Black, 55, 34);
+    Temp. {4}
+    PM2.5 {5}", this.GetTimeInfo());
+            int y = -10;
+            foreach (var text in strText.Split('\r'))
+            {
+                this.gBmp.DrawString(text, this.font, Brushes.Black, 30, y);
+                y += 30;
+            }
             gBmp.DrawImage(bmpBg, 0, 0, bmp.Width, bmp.Height);
             SetBits(bmp);
         }
