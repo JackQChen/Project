@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
@@ -164,6 +166,7 @@ namespace DesktopWidget
             this.timer1.Start();
             new Thread(() =>
             {
+                dtStart = new EventLog("System").Entries.Cast<EventLogEntry>().Where(p => p.TimeGenerated.Date == DateTime.Now.Date && p.InstanceId == 1).First().TimeGenerated;
                 while (true)
                 {
                     try
@@ -185,6 +188,8 @@ namespace DesktopWidget
             File.WriteAllText(configPath, this.Left + "," + this.Top);
         }
 
+        DateTime dtStart = DateTime.MinValue;
+        string[] strTime = new string[3] { "--", "RestTime", "--" };
         string[] strWeather = new string[3] { "--", "--", "--" };
 
         void GetWeather()
@@ -224,24 +229,21 @@ namespace DesktopWidget
 
         string[] GetTimeInfo()
         {
-            var strArr = new string[6];
-            var dtStart = DateTime.Now.AddMilliseconds(0 - Environment.TickCount);
-            strArr[0] = dtStart.ToString("HH:mm:ss");
+            if (dtStart == DateTime.MinValue)
+                return strTime.Concat(strWeather).ToArray();
+            strTime[0] = dtStart.ToString("HH:mm:ss");
             var tsRemain = dtStart.AddHours(9.5) - DateTime.Now;
             if (tsRemain.TotalMilliseconds > 0)
             {
-                strArr[1] = "RestTime";
-                strArr[2] = tsRemain.ToString().Split('.')[0];
+                strTime[1] = "RestTime";
+                strTime[2] = tsRemain.ToString().Split('.')[0];
             }
             else
             {
-                strArr[1] = "OverTime";
-                strArr[2] = tsRemain.ToString().Replace("-", "").Split('.')[0];
+                strTime[1] = "OverTime";
+                strTime[2] = tsRemain.ToString().Replace("-", "").Split('.')[0];
             }
-            strArr[3] = strWeather[0];
-            strArr[4] = strWeather[1];
-            strArr[5] = strWeather[2];
-            return strArr;
+            return strTime.Concat(strWeather).ToArray();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
