@@ -166,7 +166,7 @@ namespace DesktopWidget
             this.timer1.Start();
             new Thread(() =>
             {
-                dtStart = new EventLog("System").Entries.Cast<EventLogEntry>().Where(p => p.TimeGenerated.Date == DateTime.Now.Date && p.InstanceId == 1).First().TimeGenerated;
+                dtStart = new EventLog("System").Entries.Cast<EventLogEntry>().Where(p => p.TimeGenerated.Date == DateTime.Now.Date && p.InstanceId == 2147489653).First().TimeGenerated;
                 while (true)
                 {
                     try
