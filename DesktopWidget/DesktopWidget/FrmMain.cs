@@ -147,7 +147,8 @@ namespace DesktopWidget
         private void FrmMain_Load(object sender, EventArgs e)
         {
             brush = new SolidBrush(Color.FromArgb(147, 174, 97));
-            bmpBg = Resources.glass.Clone() as Bitmap;
+            //直接调用Resource对象会导致内存变动
+            bmpBg = Resources.glass;
             bmp = new Bitmap(this.Width, bmpBg.Height * this.Width / bmpBg.Width);
             gBmp = Graphics.FromImage(bmp);
             pfc = new PrivateFontCollection();
