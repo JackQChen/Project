@@ -204,7 +204,7 @@ namespace DesktopWidget
                     var weather = Regex.Match(responseContent, @"<span class=""description.+?</span>", RegexOptions.Singleline).Value;
                     var wArr = Regex.Match(weather, @">.+?<").Value.Replace("<", "").Replace(">", "").Split(' ');
                     weather = wArr[wArr.Length - 1];
-                    var temp = Regex.Match(responseContent, @"<span class=""Va\(t\).*?</span>", RegexOptions.Singleline).Value;
+                    var temp = Regex.Match(responseContent, @"<span class=""Va\(t\).+?</span>", RegexOptions.Singleline).Value;
                     temp = Regex.Match(temp, @">.+?<").Value.Replace("<", "").Replace(">", "");
                     var tempNum = Convert.ToInt32((Convert.ToInt32(temp) - 32) / 1.8);
                     strWeather[0] = weather;
