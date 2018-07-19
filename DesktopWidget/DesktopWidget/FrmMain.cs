@@ -180,7 +180,6 @@ namespace DesktopWidget
                 var location = File.ReadAllText(configPath).Split(',');
                 this.Location = new Point(Convert.ToInt32(location[0]), Convert.ToInt32(location[1]));
             }
-            this.timer1.Start();
             new Thread(() =>
             {
                 dtStart = new EventLog("System").Entries.Cast<EventLogEntry>().Where(p => p.TimeGenerated.Date == DateTime.Now.Date).Min(s => s.TimeGenerated);
@@ -196,6 +195,12 @@ namespace DesktopWidget
                     Thread.Sleep(1000 * 60 * 60);
                 }
             }) { IsBackground = true }.Start();
+        }
+
+        private void FrmMain_Shown(object sender, EventArgs e)
+        {
+            this.Draw();
+            this.timer1.Start();
         }
 
         protected override void OnLocationChanged(EventArgs e)
