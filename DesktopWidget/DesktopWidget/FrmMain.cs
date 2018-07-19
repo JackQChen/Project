@@ -147,6 +147,7 @@ namespace DesktopWidget
                   IntPtr.Zero, "SysListView32", "FolderView"
               );
             SetWindowLong(this.Handle, GWL_HWNDPARENT, hprog);
+            base.OnShown(e);
         }
 
         #endregion
