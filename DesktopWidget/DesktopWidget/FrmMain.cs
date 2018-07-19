@@ -92,20 +92,35 @@ namespace DesktopWidget
 
         #region 无边框移动
 
-        [DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
-
-        [DllImport("user32.dll")]
-        public static extern bool SendMessage(IntPtr hwnd, int wMsg, int wParam, int lParam);
-
-        private const int VM_NCLBUTTONDOWN = 0XA1;//定义鼠标左键按下
-        private const int HTCAPTION = 2;
+        private bool isMouseDown = false;
+        private Point mouseOffset;
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
+            if (e.Button == MouseButtons.Left)
+            {
+                isMouseDown = true;
+                mouseOffset.X = this.Left - Control.MousePosition.X;
+                mouseOffset.Y = this.Top - Control.MousePosition.Y;
+            }
             base.OnMouseDown(e);
-            ReleaseCapture();
-            SendMessage((IntPtr)this.Handle, VM_NCLBUTTONDOWN, HTCAPTION, 0);
+        }
+
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            isMouseDown = false;
+            base.OnMouseUp(e);
+        }
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            if (isMouseDown)
+            {
+                var point = Control.MousePosition;
+                point.Offset(mouseOffset);
+                this.Location = point;
+            }
+            base.OnMouseMove(e);
         }
 
         #endregion
@@ -247,7 +262,7 @@ namespace DesktopWidget
             return strTime.Concat(strWeather).ToArray();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        void Draw()
         {
             gBmp.Clear(Color.Transparent);
             gBmp.FillRectangle(brush, 25, 25, 230, 160);
@@ -265,6 +280,11 @@ StartTime {0}
             }
             gBmp.DrawImage(bmpBg, 0, 0, bmp.Width, bmp.Height);
             SetBits(bmp);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Draw();
         }
     }
 }
