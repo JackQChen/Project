@@ -44,9 +44,10 @@ namespace DesktopWidget
         {
             get
             {
-                CreateParams cParms = base.CreateParams;
-                cParms.ExStyle |= 0x00080000; // WS_EX_LAYERED
-                return cParms;
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x00080000; //WS_EX_LAYERED
+                cp.ExStyle |= 0x08000000; //WS_EX_NOACTIVATE
+                return cp;
             }
         }
 
@@ -127,13 +128,16 @@ namespace DesktopWidget
 
         #region 转化为桌面插件
 
-        [DllImport("user32.dll", SetLastError = true)]
+        [DllImport("user32.dll")]
         static extern int SetWindowLong(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
-        [DllImport("user32.dll", SetLastError = true)]
+        [DllImport("user32.dll")]
         static extern IntPtr FindWindow(string lpWindowClass, string lpWindowName);
-        [DllImport("user32.dll", SetLastError = true)]
+        [DllImport("user32.dll")]
         static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, string className, string windowTitle);
         const int GWL_HWNDPARENT = -8;
+        [DllImport("user32.dll")]
+        static extern bool SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+        const int SE_SHUTDOWN_PRIVILEGE = 0x13;
 
         protected override void OnShown(EventArgs e)
         {
@@ -148,6 +152,13 @@ namespace DesktopWidget
               );
             SetWindowLong(this.Handle, GWL_HWNDPARENT, hprog);
             base.OnShown(e);
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == 0xf)
+                SetWindowPos(this.Handle, 1, 0, 0, 0, 0, SE_SHUTDOWN_PRIVILEGE);
+            base.WndProc(ref m);
         }
 
         #endregion
