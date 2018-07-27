@@ -21,6 +21,7 @@ namespace DesktopWidget
         }
 
         #region 半透明不规则窗体创建
+
         private void InitializeStyles()
         {
             SetStyle(
@@ -32,7 +33,6 @@ namespace DesktopWidget
             SetStyle(ControlStyles.Selectable, false);
             UpdateStyles();
         }
-
 
         protected override void OnHandleCreated(EventArgs e)
         {
@@ -46,7 +46,6 @@ namespace DesktopWidget
             {
                 CreateParams cp = base.CreateParams;
                 cp.ExStyle |= 0x00080000; //WS_EX_LAYERED
-                cp.ExStyle |= 0x08000000; //WS_EX_NOACTIVATE
                 return cp;
             }
         }
@@ -55,12 +54,10 @@ namespace DesktopWidget
         {
             if (!Bitmap.IsCanonicalPixelFormat(bitmap.PixelFormat) || !Bitmap.IsAlphaPixelFormat(bitmap.PixelFormat))
                 throw new ApplicationException("The picture must be 32bit picture with alpha channel.");
-
             IntPtr oldBits = IntPtr.Zero;
             IntPtr screenDC = Win32.GetDC(IntPtr.Zero);
             IntPtr hBitmap = IntPtr.Zero;
             IntPtr memDc = Win32.CreateCompatibleDC(screenDC);
-
             try
             {
                 Win32.Point topLoc = new Win32.Point(Left, Top);
