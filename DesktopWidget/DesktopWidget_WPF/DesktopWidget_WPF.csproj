@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7F44C462-A0A7-4652-865A-343F0C0D136B}</ProjectGuid>
+    <ProjectGuid>{6C2ADA47-02DD-474D-9599-78B5D968BD0D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WorkTimer</RootNamespace>
-    <AssemblyName>WorkTimer</AssemblyName>
+    <RootNamespace>DesktopWidget_WPF</RootNamespace>
+    <AssemblyName>DesktopWidget_WPF</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>

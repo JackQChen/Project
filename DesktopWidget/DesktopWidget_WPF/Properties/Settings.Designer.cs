@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WorkTimer.Properties {
+namespace DesktopWidget_WPF.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

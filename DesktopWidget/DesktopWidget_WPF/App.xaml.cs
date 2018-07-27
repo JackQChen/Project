@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 
-namespace WorkTimer
+namespace DesktopWidget_WPF
 {
     /// <summary>
     /// App.xaml 的交互逻辑

@@ -8,7 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
-namespace WorkTimer
+namespace DesktopWidget_WPF
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
@@ -48,6 +48,33 @@ namespace WorkTimer
                 IntPtr.Zero, "SysListView32", "FolderView"
             );
             SetWindowLong(handle, GWL_HWNDPARENT, hprog);
+        }
+
+        protected override void OnSourceInitialized(EventArgs e)
+        {
+            base.OnSourceInitialized(e);
+            HwndSource source = PresentationSource.FromVisual(this) as HwndSource;
+            source.AddHook(WndProc);
+        }
+
+        const int SE_SHUTDOWN_PRIVILEGE = 0x13;
+        const int WM_WINDOWPOSCHANGED = 0x47;
+        [DllImport("user32.dll")]
+        static extern bool SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+
+        bool inProc = false;
+        private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            if (msg == WM_WINDOWPOSCHANGED)
+            {
+                if (inProc)
+                    return IntPtr.Zero;
+                inProc = true;
+                var handle = new WindowInteropHelper(Application.Current.MainWindow).Handle;
+                SetWindowPos(handle, 1, 0, 0, 0, 0, SE_SHUTDOWN_PRIVILEGE);
+                inProc = false;
+            }
+            return IntPtr.Zero;
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
