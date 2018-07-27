@@ -138,6 +138,7 @@ namespace DesktopWidget
         [DllImport("user32.dll")]
         static extern bool SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
         const int SE_SHUTDOWN_PRIVILEGE = 0x13;
+        const int WM_WINDOWPOSCHANGED = 0x47;
 
         protected override void OnShown(EventArgs e)
         {
@@ -154,10 +155,17 @@ namespace DesktopWidget
             base.OnShown(e);
         }
 
+        bool inProc = false;
         protected override void WndProc(ref Message m)
         {
-            if (m.Msg == 0xf)
+            if (m.Msg == WM_WINDOWPOSCHANGED)
+            {
+                if (inProc)
+                    return;
+                inProc = true;
                 SetWindowPos(this.Handle, 1, 0, 0, 0, 0, SE_SHUTDOWN_PRIVILEGE);
+                inProc = false;
+            }
             base.WndProc(ref m);
         }
 
