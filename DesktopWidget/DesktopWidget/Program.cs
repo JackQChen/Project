@@ -16,14 +16,6 @@ namespace DesktopWidget
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //using (var frm = new Form())
-            //{
-            //    frm.FormBorderStyle = FormBorderStyle.None;
-            //    //frm.ShowInTaskbar = false;
-            //    frm.Size = Size.Empty;
-            //    frm.Show();
-            //    frm.Close();
-            //}
             Application.Run(new FrmMain());
         }
     }
