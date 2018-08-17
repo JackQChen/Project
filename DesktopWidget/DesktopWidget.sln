@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopWidget", "DesktopWid
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopWidget_WPF", "DesktopWidget_WPF\DesktopWidget_WPF.csproj", "{6C2ADA47-02DD-474D-9599-78B5D968BD0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkTimer", "WorkTimer\WorkTimer.csproj", "{9C1E65D6-9B08-4D83-B990-5F331242701F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,16 @@ Global
 		{6C2ADA47-02DD-474D-9599-78B5D968BD0D}.Release|Mixed Platforms.Build.0 = Release|x86
 		{6C2ADA47-02DD-474D-9599-78B5D968BD0D}.Release|x86.ActiveCfg = Release|x86
 		{6C2ADA47-02DD-474D-9599-78B5D968BD0D}.Release|x86.Build.0 = Release|x86
+		{9C1E65D6-9B08-4D83-B990-5F331242701F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C1E65D6-9B08-4D83-B990-5F331242701F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C1E65D6-9B08-4D83-B990-5F331242701F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{9C1E65D6-9B08-4D83-B990-5F331242701F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{9C1E65D6-9B08-4D83-B990-5F331242701F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9C1E65D6-9B08-4D83-B990-5F331242701F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C1E65D6-9B08-4D83-B990-5F331242701F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C1E65D6-9B08-4D83-B990-5F331242701F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{9C1E65D6-9B08-4D83-B990-5F331242701F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{9C1E65D6-9B08-4D83-B990-5F331242701F}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
