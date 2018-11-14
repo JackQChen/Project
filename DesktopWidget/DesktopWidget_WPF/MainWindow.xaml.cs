@@ -1,21 +1,24 @@
 ﻿using System;
-using System.Globalization;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
-namespace DesktopWidget_WPF
+namespace DesktopWidget
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
     public partial class MainWindow : Window
     {
-
         [DllImport("user32.dll", SetLastError = true)]
         static extern int SetWindowLong(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
         [DllImport("user32.dll", SetLastError = true)]
@@ -27,15 +30,18 @@ namespace DesktopWidget_WPF
         static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
 
         DispatcherTimer timer = new DispatcherTimer();
+        Model model = new Model();
+        string configPath = "";
+        DateTime dtStart = DateTime.MinValue;
 
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = model;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Init();
             timer.Tick += new EventHandler(timer_Tick);
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Start();
@@ -48,6 +54,64 @@ namespace DesktopWidget_WPF
                 IntPtr.Zero, "SysListView32", "FolderView"
             );
             SetWindowLong(handle, GWL_HWNDPARENT, hprog);
+            configPath = AppDomain.CurrentDomain.BaseDirectory + "dw.dat";
+            if (File.Exists(configPath))
+            {
+                var location = File.ReadAllText(configPath).Split(',');
+                this.Left = Convert.ToInt32(location[0]);
+                this.Top = Convert.ToInt32(location[1]);
+            }
+            new Thread(() =>
+            {
+                dtStart = new EventLog("System").Entries.Cast<EventLogEntry>().Where(p => p.TimeGenerated.Date == DateTime.Now.Date).Min(s => s.TimeGenerated);
+                model.Text1 = dtStart.ToString("HH:mm:ss");
+                while (true)
+                {
+                    try
+                    {
+                        GetWeather();
+                    }
+                    catch
+                    {
+                    }
+                    Thread.Sleep(1000 * 60 * 60);
+                }
+            }) { IsBackground = true }.Start();
+        }
+
+        void GetWeather()
+        {
+            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create("https://www.yahoo.com/news/weather/china/xian/xian-2157249");
+            using (HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse())
+            {
+                using (StreamReader streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
+                {
+                    string responseContent = streamReader.ReadToEnd();
+                    var weather = Regex.Match(responseContent, @"<span class=""description.+?</span>", RegexOptions.Singleline).Value;
+                    var wArr = Regex.Match(weather, @">.+?<").Value.Replace("<", "").Replace(">", "").Split(' ');
+                    weather = wArr[wArr.Length - 1];
+                    var temp = Regex.Match(responseContent, @"<span class=""Va\(t\).+?</span>", RegexOptions.Singleline).Value;
+                    temp = Regex.Match(temp, @">.+?<").Value.Replace("<", "").Replace(">", "");
+                    var tempNum = Convert.ToInt32((Convert.ToInt32(temp) - 32) / 1.8);
+                    model.Text3 = weather;
+                    model.Text4 = tempNum + "`C";
+                    httpWebResponse.Close();
+                    streamReader.Close();
+                }
+            }
+            httpWebRequest = (HttpWebRequest)WebRequest.Create("http://www.pm25.in/xian");
+            using (HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse())
+            {
+                using (StreamReader streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
+                {
+                    string responseContent = streamReader.ReadToEnd();
+                    var pm25 = Regex.Match(responseContent, @"<td>高新西区.+?</tr>", RegexOptions.Singleline).Value;
+                    var ms = Regex.Matches(pm25, "<td>.+?</td>", RegexOptions.Singleline);
+                    model.Text5 = Regex.Match(ms[4].Value, @">.+?<").Value.Replace("<", "").Replace(">", "");
+                    httpWebResponse.Close();
+                    streamReader.Close();
+                }
+            }
         }
 
         protected override void OnSourceInitialized(EventArgs e)
@@ -90,56 +154,50 @@ namespace DesktopWidget_WPF
             }
         }
 
-        string[] GetTimeInfo()
+        protected override void OnLocationChanged(EventArgs e)
         {
-            var strArr = new string[3];
-            var dtStart = DateTime.Now.AddMilliseconds(0 - Environment.TickCount);
-            strArr[0] = dtStart.ToString("HH:mm:ss");
-            var tsRemain = dtStart.AddHours(9.5) - DateTime.Now;
-            strArr[1] = tsRemain.TotalMilliseconds > 0 ? tsRemain.ToString().Split('.')[0] : "00:00:00";
-            strArr[2] = tsRemain.TotalMilliseconds < 0 ? tsRemain.ToString().Replace("-", "").Split('.')[0] : "00:00:00";
-            return strArr;
+            if (string.IsNullOrEmpty(this.configPath))
+                return;
+            File.WriteAllText(configPath, this.Left + "," + this.Top);
         }
 
         void timer_Tick(object sender, EventArgs e)
         {
-            bText = new FormattedText(string.Format(
-                "StartTime {0}\r\n\r\nRemainingTime {1}\r\n\r\nOverTime {2}", GetTimeInfo()), CultureInfo.CurrentCulture,
-                       FlowDirection.LeftToRight, this.bFont, 21, Brushes.Black);
-            this.InvalidateVisual();
+            if (dtStart == DateTime.MinValue)
+                return;
+            var tsRemain = dtStart.AddHours(9.5) - DateTime.Now;
+            var strTime = string.Empty;
+            if (tsRemain.TotalMilliseconds > 0)
+            {
+                strTime = " RestTime " + tsRemain.ToString().Split('.')[0];
+            }
+            else
+            {
+                strTime = " OverTime " + tsRemain.ToString().Replace("-", "").Split('.')[0];
+            }
+            model.Text2 = strTime;
         }
+    }
 
-        Brush bBrush;
-        ImageSource imgSource;
-        Typeface bFont;
-        FormattedText bText;
-        Point txtLocation;
-        Rect rectBk, rectImg;
+    public class Model : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        void Init()
+        private void OnPropertyChanged(string propName)
         {
-            bBrush = new SolidColorBrush(Color.FromRgb(147, 174, 97));
-
-            imgSource = new BitmapImage(new Uri("pack://application:,,,/Res/glass.png"));
-
-            var font = this.FindResource("LEDFont") as FontFamily;
-
-            this.bFont = new Typeface(font,
-                new System.Windows.FontStyle(),
-                new System.Windows.FontWeight(),
-                new System.Windows.FontStretch());
-
-            txtLocation = new Point(45, 60);
-            rectBk = new Rect(32, 32, this.Width - 90, this.Height - 102);
-            rectImg = new Rect(0, 0, this.Width, this.Height);
-            this.Background = null;
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
-        protected override void OnRender(DrawingContext dc)
-        {
-            dc.DrawRectangle(bBrush, null, rectBk);
-            dc.DrawText(bText, txtLocation);
-            dc.DrawImage(imgSource, rectImg);
-        }
+        private string text1 = "--";
+        public string Text1 { get { return "StartTime " + text1; } set { text1 = value; OnPropertyChanged("Text1"); } }
+        private string text2 = " RestTime --";
+        public string Text2 { get { return text2; } set { text2 = value; OnPropertyChanged("Text2"); } }
+        private string text3 = "--";
+        public string Text3 { get { return "  Weather " + text3; } set { text3 = value; OnPropertyChanged("Text3"); } }
+        private string text4 = "--";
+        public string Text4 { get { return "    Temp. " + text4; } set { text4 = value; OnPropertyChanged("Text4"); } }
+        private string text5 = "--";
+        public string Text5 { get { return "    PM2.5 " + text5; } set { text5 = value; OnPropertyChanged("Text5"); } }
     }
 }

@@ -1,5 +1,23 @@
-﻿<Window x:Class="DesktopWidget_WPF.MainWindow"
+﻿<Window x:Class="DesktopWidget.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="WorkTimer" Height="300" Width="400" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Loaded="Window_Loaded">
+        Title="WorkTimer" Height="240" Width="300" WindowStyle="None" AllowsTransparency="True" Background="Transparent" Loaded="Window_Loaded">
+    <Window.Resources>
+        <ResourceDictionary>
+            <FontFamily x:Key="LEDFont">/Res/#Ericsson GA628</FontFamily>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{DynamicResource ResourceKey=LEDFont}"/>
+                <Setter Property="FontSize" Value="19"/>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Canvas>
+        <Canvas Background="#93AE61" Width="230" Height="160" Margin="25 25 0 0"/>
+        <TextBlock Margin="35 40 0 0" Text="{Binding Text1}"/>
+        <TextBlock Margin="35 70 0 0" Text="{Binding Text2}"/>
+        <TextBlock Margin="35 100 0 0" Text="{Binding Text3}"/>
+        <TextBlock Margin="35 130 0 0" Text="{Binding Text4}"/>
+        <TextBlock Margin="35 160 0 0" Text="{Binding Text5}"/>
+        <Image Width="300" Source="/Res/glass.png" />
+    </Canvas>
 </Window>
