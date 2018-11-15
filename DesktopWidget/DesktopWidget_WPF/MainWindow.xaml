@@ -1,7 +1,7 @@
 ﻿<Window x:Class="DesktopWidget.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="WorkTimer" Height="240" Width="300" WindowStyle="None" AllowsTransparency="True" Background="Transparent" Loaded="Window_Loaded">
+        Height="240" Width="300" WindowStyle="None" AllowsTransparency="True" Background="Transparent" Loaded="Window_Loaded">
     <Window.Resources>
         <ResourceDictionary>
             <FontFamily x:Key="LEDFont">/Res/#Ericsson GA628</FontFamily>
