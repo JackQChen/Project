@@ -12,12 +12,12 @@
         </ResourceDictionary>
     </Window.Resources>
     <Canvas>
-        <Canvas Background="#93AE61" Width="230" Height="160" Margin="25 25 0 0"/>
-        <TextBlock Margin="35 40 0 0" Text="{Binding Text1}"/>
-        <TextBlock Margin="35 70 0 0" Text="{Binding Text2}"/>
-        <TextBlock Margin="35 100 0 0" Text="{Binding Text3}"/>
-        <TextBlock Margin="35 130 0 0" Text="{Binding Text4}"/>
-        <TextBlock Margin="35 160 0 0" Text="{Binding Text5}"/>
+        <Canvas Canvas.Left="25" Canvas.Top="25" Background="#93AE61" Width="230" Height="160" />
+        <TextBlock Canvas.Left="35" Canvas.Top="40" Text="{Binding Text1}"/>
+        <TextBlock Canvas.Left="35" Canvas.Top="70" Text="{Binding Text2}"/>
+        <TextBlock Canvas.Left="35" Canvas.Top="100" Text="{Binding Text3}"/>
+        <TextBlock Canvas.Left="35" Canvas.Top="130" Text="{Binding Text4}"/>
+        <TextBlock Canvas.Left="35" Canvas.Top="160" Text="{Binding Text5}"/>
         <Image Width="300" Source="/Res/glass.png" />
     </Canvas>
 </Window>
