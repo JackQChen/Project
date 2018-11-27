@@ -256,9 +256,9 @@ namespace DesktopWidget
                 using (StreamReader streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
                 {
                     string responseContent = streamReader.ReadToEnd();
-                    var pm25 = Regex.Match(responseContent, @"<td>高新西区.+?</tr>", RegexOptions.Singleline).Value;
-                    var ms = Regex.Matches(pm25, "<td>.+?</td>", RegexOptions.Singleline);
-                    strWeather[2] = Regex.Match(ms[4].Value, @">.+?<").Value.Replace("<", "").Replace(">", "");
+                    var aqi = Regex.Match(responseContent, @"<td>高新西区.+?</tr>", RegexOptions.Singleline).Value;
+                    var ms = Regex.Matches(aqi, "<td>.+?</td>", RegexOptions.Singleline);
+                    strWeather[2] = Regex.Match(ms[1].Value, @">.+?<").Value.Replace("<", "").Replace(">", "");
                     httpWebResponse.Close();
                     streamReader.Close();
                 }
@@ -293,7 +293,7 @@ StartTime {0}
  {1} {2}
   Weather {3}
     Temp. {4}
-    PM2.5 {5}", this.GetTimeInfo());
+      AQI {5}", this.GetTimeInfo());
             int y = -10;
             foreach (var text in strText.Split('\r'))
             {

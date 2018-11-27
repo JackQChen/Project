@@ -105,9 +105,9 @@ namespace DesktopWidget
                 using (StreamReader streamReader = new StreamReader(httpWebResponse.GetResponseStream()))
                 {
                     string responseContent = streamReader.ReadToEnd();
-                    var pm25 = Regex.Match(responseContent, @"<td>高新西区.+?</tr>", RegexOptions.Singleline).Value;
-                    var ms = Regex.Matches(pm25, "<td>.+?</td>", RegexOptions.Singleline);
-                    model.Text5 = Regex.Match(ms[4].Value, @">.+?<").Value.Replace("<", "").Replace(">", "");
+                    var aqi = Regex.Match(responseContent, @"<td>高新西区.+?</tr>", RegexOptions.Singleline).Value;
+                    var ms = Regex.Matches(aqi, "<td>.+?</td>", RegexOptions.Singleline);
+                    model.Text5 = Regex.Match(ms[1].Value, @">.+?<").Value.Replace("<", "").Replace(">", "");
                     httpWebResponse.Close();
                     streamReader.Close();
                 }
@@ -198,6 +198,6 @@ namespace DesktopWidget
         private string text4 = "--";
         public string Text4 { get { return "    Temp. " + text4; } set { text4 = value; OnPropertyChanged("Text4"); } }
         private string text5 = "--";
-        public string Text5 { get { return "    PM2.5 " + text5; } set { text5 = value; OnPropertyChanged("Text5"); } }
+        public string Text5 { get { return "      AQI " + text5; } set { text5 = value; OnPropertyChanged("Text5"); } }
     }
 }
