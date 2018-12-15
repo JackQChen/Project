@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using VirtualKey.Properties;
+using System;
 
 namespace VirtualKey
 {
@@ -25,12 +26,12 @@ namespace VirtualKey
             winRing.Init();
             dicKeys = new Dictionary<Keys, char>();
             dicKeys.Add(Keys.M, '0');
-            dicKeys.Add(Keys.J, 'a');
-            dicKeys.Add(Keys.K, 'b');
-            dicKeys.Add(Keys.L, 'c');
-            dicKeys.Add(Keys.U, 'd');
-            dicKeys.Add(Keys.I, 'e');
-            dicKeys.Add(Keys.O, 'f');
+            dicKeys.Add(Keys.J, '1');
+            dicKeys.Add(Keys.K, '2');
+            dicKeys.Add(Keys.L, '3');
+            dicKeys.Add(Keys.U, '4');
+            dicKeys.Add(Keys.I, '5');
+            dicKeys.Add(Keys.O, '6');
             this.notifyIcon1.Icon = Resources.off;
         }
 
@@ -41,12 +42,14 @@ namespace VirtualKey
 
         bool hook_OnKey(Hook.KeyBoardHookStruct key)
         {
-            if (key.vkCode == 93 || key.vkCode == 49)
+            if (key.vkCode == (int)Keys.Apps)
             {
-                if (key.flags == 1)
+                if (key.flags == 129)
+                {
                     inNum = !inNum;
-                this.notifyIcon1.Icon = inNum ? Resources.on : Resources.off;
-                return true;
+                    this.notifyIcon1.Icon = inNum ? Resources.on : Resources.off;
+                    return true;
+                }
             }
             else if (inNum)
             {
