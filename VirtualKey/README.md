@@ -5,7 +5,7 @@
 需要以管理员身份运行程序，如果弹出程序修改驱动/服务提示框，需要点允许才能生效<br>
 测试了64位Win7和Win10均可用(32位系统需要替换驱动并编译为32位程序)<br>
 测试了在DirectInput游戏及密码框中均可使用<br>
-![](https://github.com/chen365409389/Project/blob/master/Img/SharpeGL.png)<br><br>
+![](https://github.com/chen365409389/Project/blob/master/Img/VK.png)<br><br>
 
 JackChen<br>
 2018-02-09
