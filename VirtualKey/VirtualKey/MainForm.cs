@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using VirtualKey.Properties;
 using System;
+using System.Runtime.InteropServices;
 
 namespace VirtualKey
 {
@@ -40,6 +41,9 @@ namespace VirtualKey
             this.Hide();
         }
 
+        [DllImport("User32.DLL")]
+        public static extern void LockWorkStation();
+
         bool hook_OnKey(Hook.KeyBoardHookStruct key)
         {
             if (key.vkCode == (int)Keys.Apps)
@@ -50,6 +54,10 @@ namespace VirtualKey
                     this.notifyIcon1.Icon = inNum ? Resources.on : Resources.off;
                     return true;
                 }
+            }
+            else if (key.vkCode == (int)Keys.Pause)
+            {
+                LockWorkStation();
             }
             else if (inNum)
             {
