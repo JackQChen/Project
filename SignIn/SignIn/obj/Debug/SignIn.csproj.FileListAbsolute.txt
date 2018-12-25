@@ -15,3 +15,4 @@ C:\Users\Administrator\Desktop\SignIn\SignIn\bin\log4net.dll
 C:\Users\Administrator\Desktop\SignIn\SignIn\bin\WebFramework.pdb
 C:\Users\Administrator\Desktop\SignIn\SignIn\obj\Debug\SignIn.dll
 C:\Users\Administrator\Desktop\SignIn\SignIn\obj\Debug\SignIn.pdb
+D:\GitHub\Project\SignIn\SignIn\obj\Debug\SignIn.pdb

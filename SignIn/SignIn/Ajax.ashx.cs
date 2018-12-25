@@ -46,10 +46,6 @@ namespace SignIn
                 {
                     throw new Exception("请求参数无效，请核对参数");
                 }
-                string strInvoke = para.ToJsonProperty("invoke");
-                string strType = strInvoke.Split(',')[0],
-                    strDll = strInvoke.Split(',')[1].Split('|')[0],
-                    strMethod = strInvoke.Split('|')[1];
                 lock (instance.dicConstructor)
                 {
                     if (!instance.dicConstructor.ContainsKey(strType + strDll))
