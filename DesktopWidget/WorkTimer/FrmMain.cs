@@ -133,38 +133,17 @@ namespace WorkTimer
         [DllImport("user32.dll")]
         static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, string className, string windowTitle);
         const int GWL_HWNDPARENT = -8;
-        [DllImport("user32.dll")]
-        static extern bool SetWindowPos(IntPtr hWnd, int hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
-        const int SE_SHUTDOWN_PRIVILEGE = 0x13;
-        const int WM_WINDOWPOSCHANGED = 0x47;
 
         protected override void OnShown(EventArgs e)
         {
             //该事件及设置顺序不可调整
             this.ShowInTaskbar = false;
-            IntPtr hprog = FindWindowEx(
-                  FindWindowEx(
-                      FindWindow("Progman", "Program Manager"),
-                      IntPtr.Zero, "SHELLDLL_DefView", ""
-                  ),
-                  IntPtr.Zero, "SysListView32", "FolderView"
-              );
-            SetWindowLong(this.Handle, GWL_HWNDPARENT, hprog);
+            var hWnd = FindWindow("Progman", "Program Manager");
+            hWnd = FindWindowEx(hWnd, IntPtr.Zero, "SHELLDLL_DefView", "");
+            hWnd = FindWindowEx(hWnd, IntPtr.Zero, "SysListView32", "FolderView");
+            hWnd = FindWindowEx(hWnd, IntPtr.Zero, "SysHeader32", "");
+            SetWindowLong(this.Handle, GWL_HWNDPARENT, hWnd);
             base.OnShown(e);
-        }
-
-        bool inProc = false;
-        protected override void WndProc(ref Message m)
-        {
-            if (m.Msg == WM_WINDOWPOSCHANGED)
-            {
-                if (inProc)
-                    return;
-                inProc = true;
-                SetWindowPos(this.Handle, 1, 0, 0, 0, 0, SE_SHUTDOWN_PRIVILEGE);
-                inProc = false;
-            }
-            base.WndProc(ref m);
         }
 
         #endregion
@@ -225,7 +204,8 @@ namespace WorkTimer
                     }
                     Thread.Sleep(1000 * 60 * 60);
                 }
-            }) { IsBackground = true }.Start();
+            })
+            { IsBackground = true }.Start();
         }
 
         private void FrmMain_Shown(object sender, EventArgs e)
