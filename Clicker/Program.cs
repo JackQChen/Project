@@ -57,6 +57,7 @@ namespace Clicker
             Application.Run(new Form
             {
                 Size = new Size(300, 200),
+                Text = "Clicker",
                 Controls = {
                     new Label {
                         Text = "Hold Shift and click to use this feature",
@@ -68,4 +69,5 @@ namespace Clicker
         }
     }
 }
+
 
